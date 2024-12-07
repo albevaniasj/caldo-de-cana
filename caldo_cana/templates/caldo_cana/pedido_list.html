@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Pedidos</title>
+</head>
+<body>
+    <h1>Lista de Pedidos</h1>
+    <a href="{% url 'pedido-create' %}">Adicionar Pedido</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Cliente</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in object_list %}
+                <tr>
+                    <td>{{ pedido.descricao }}</td>
+                    <td>{{ pedido.cliente.nome }}</td>
+                    <td>R$ {{ pedido.preco }}</td>
+                    <td>
+                        <a href="{% url 'pedido-update' pedido.pk %}">Editar</a> |
+                        <a href="{% url 'pedido-delete' pedido.pk %}">Deletar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Sem pedidos no momento.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

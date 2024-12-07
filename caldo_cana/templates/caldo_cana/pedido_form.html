@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if object %}Editar Pedido{% else %}Novo Pedido{% endif %}</title>
+</head>
+<body>
+    <h1>{% if object %}Editar Pedido{% else %}Novo Pedido{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="id_cliente">Cliente:</label>
+            {{ form.cliente }}
+        </p>
+        <p>
+            <label for="id_descricao">Descrição:</label>
+            {{ form.descricao }}
+        </p>
+        <p>
+            <label for="id_preco">Preço:</label>
+            {{ form.preco }}
+        </p>
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    <a href="{% url 'pedido-list' %}">Voltar para a lista</a>
+</body>
+</html>
